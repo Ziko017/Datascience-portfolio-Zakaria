@@ -488,9 +488,9 @@ autoplot(forecast(fit3, h = 12)) +
   ggtitle("Prévisions - SARIMA(3,2,0)(0,1,1)[12]")
 checkresiduals(fit3)
 
-# 1.SARIMA(3,1,0)(0,1,1)[12] : p-value = 0.0309 < 0.05 → résidus autocorrélés ❌
-# 2.SARIMA(3,1,1)(1,1,1)[12] : p-value = 0.5054 > 0.05 → résidus aléatoires ✅
-# 3.SARIMA(3,2,0)(0,1,1)[12] : p-value = 0.0332 < 0.05 → résidus autocorrélés ❌
+# 1.SARIMA(3,1,0)(0,1,1)[12] : p-value = 0.0309 < 0.05 → résidus autocorrélés 
+# 2.SARIMA(3,1,1)(1,1,1)[12] : p-value = 0.5054 > 0.05 → résidus aléatoires 
+# 3.SARIMA(3,2,0)(0,1,1)[12] : p-value = 0.0332 < 0.05 → résidus autocorrélés 
 #
 # Conclusion : le modèle SARIMA(3,1,1)(1,1,1)[12] est retenu.
 # Il offre un compromis optimal entre AIC faible et résidus non autocorrélés.
