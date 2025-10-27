@@ -118,7 +118,7 @@ Une fenêtre s’ouvrira pour permettre à l’utilisateur de saisir les informa
 ## Données
 
 Le fichier de données se trouve ici :  
-`models/Dataset_Thuy (1).csv`
+`Dataset_Thuy (1).csv`
 
 ---
 
