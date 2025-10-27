@@ -667,7 +667,7 @@ cat("\n=== Métriques (Test, h=12) ===\n")
 print(rbind(
   SARIMA = met_sarima,
   HYBRID_SARIMA_XGB = met_hybrid_xgb,
-  HYBRID_SARIMA_SVR = met_hybrid_svr,
+  HYBRID_SARIMA_SVR = met_hybrid_svr
 ), digits = 4)
 
 # ==== 5) Plots comparatifs ====
@@ -676,7 +676,7 @@ df_plot <- data.frame(
   Observé = as.numeric(test2),
   SARIMA  = yhat_sarima_test,
   HYBRID_XGB = yhat_hybrid_xgb,
-  HYBRID_SVR = yhat_hybrid_svr,
+  HYBRID_SVR = yhat_hybrid_svr
 )
 
 ggplot(df_plot, aes(x = date)) +
