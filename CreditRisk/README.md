@@ -289,31 +289,6 @@ jupyter notebook
 # Exécuter les notebooks dans l'ordre :
 # 01 → 02 → 03 → 05 → 06
 
-
-##  Points Clés du Projet
-
-###  Choix Méthodologiques Justifiés
-
-1. **ROC-AUC vs F1-weighted**
-   - Dataset déséquilibré (99.7/0.3)
-   - F1-weighted = 0.997 (trompeur, modèle dummy donne 0.995)
-   - ROC-AUC = 0.73 (reflète vraie performance)
-
-2. **StratifiedKFold Obligatoire**
-   - Préserve 0.3% de Bad dans chaque fold
-   - KFold classique → risque de folds sans Bad clients
-   - Essentiel pour ROC-AUC calculable
-
-3. **Données Standardisées + Drift**
-   - Conversion nécessaire : `drift_std = drift_réel / σ_train`
-   - Drift additif : +1.5σ pour âge
-   - Drift multiplicatif : pas de conversion simple
-
-4. **PSI > KS pour Bancaire**
-   - PSI standard industrie (seuil = 0.2)
-   - Plus strict que KS
-   - Détecte drifts plus tôt
-
 ###  Pièges Évités
 
 - ❌ Data leakage (NB_BAD, NB_LATE)
@@ -334,15 +309,15 @@ jupyter notebook
 
 ### Ce qui Fonctionne
 
-✅ **XGBoost avec forte régularisation L2**
+ **XGBoost avec forte régularisation L2**
 - Robuste au déséquilibre
 - Gère bien les interactions
 
-✅ **Suppression variables driftées**
+ **Suppression variables driftées**
 - Simple à implémenter
 - Récupération significative (56%)
 
-✅ **Monitoring continu du drift**
+ **Monitoring continu du drift**
 - PSI calculé périodiquement
 - Alerte si PSI > 0.2
 
@@ -383,5 +358,3 @@ jupyter notebook
 5. **Chen, T. & Guestrin, C. (2016)** - "XGBoost: A Scalable Tree Boosting System"
 
 ---
-
-**⭐ Si ce projet vous a aidé, n'hésitez pas à le star !**
