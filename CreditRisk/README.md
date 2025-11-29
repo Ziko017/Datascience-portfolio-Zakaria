@@ -33,7 +33,7 @@ Ce projet étudie l'impact de ces changements et propose des stratégies d'adapt
 
 ---
 
-## 🎓 Objectifs
+##  Objectifs
 
 ### Phase 1 : Préparation des Données (Q1)
 - ✅ Nettoyage du dataset (gestion valeurs manquantes, outliers)
