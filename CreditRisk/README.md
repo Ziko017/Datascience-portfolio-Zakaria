@@ -36,38 +36,38 @@ Ce projet étudie l'impact de ces changements et propose des stratégies d'adapt
 ##  Objectifs
 
 ### Phase 1 : Préparation des Données (Q1)
-- ✅ Nettoyage du dataset (gestion valeurs manquantes, outliers)
-- ✅ Détection et résolution du **data leakage** (variables NB_BAD, NB_LATE)
-- ✅ Feature engineering et sélection
-- ✅ Gestion du **déséquilibre extrême** (99.7% Good / 0.3% Bad)
+-  Nettoyage du dataset (gestion valeurs manquantes, outliers)
+-  Détection et résolution du **data leakage** (variables NB_BAD, NB_LATE)
+-  Feature engineering et sélection
+-  Gestion du **déséquilibre extrême** (99.7% Good / 0.3% Bad)
 
 ### Phase 2 : Évaluation de la Stabilité (Q2)
-- ✅ **Cross-Validation stratifiée** (k-fold avec préservation des classes)
-- ✅ **Bootstrap** pour estimation de la variance
-- ✅ Analyse de la dépendance aux splits (écart-type σ = 0.044)
-- ✅ Comparaison des métriques (F1-weighted vs **ROC-AUC**)
+-  **Cross-Validation stratifiée** (k-fold avec préservation des classes)
+-  **Bootstrap** pour estimation de la variance
+-  Analyse de la dépendance aux splits (écart-type σ = 0.044)
+-  Comparaison des métriques (F1-weighted vs **ROC-AUC**)
 
 ### Phase 3 : Optimisation des Hyperparamètres (Q3)
-- ✅ **RandomizedSearch** (30 itérations, 8 hyperparamètres)
-- ✅ Définition et justification de l'espace de recherche
-- ✅ **Validation Curves** pour 2 hyperparamètres majeurs :
+-  **RandomizedSearch** (30 itérations, 8 hyperparamètres)
+-  Définition et justification de l'espace de recherche
+-  **Validation Curves** pour 2 hyperparamètres majeurs :
   - `max_depth` : identification zones stables/instables
   - `reg_lambda` : analyse du plateau de régularisation
-- ✅ Évaluation finale avec **intervalle de confiance à 95%**
+-  Évaluation finale avec **intervalle de confiance à 95%**
 
 ### Phase 5 : Simulation et Mesure du Drift (Q5)
-- ✅ Création d'un dataset drifté (3 variables modifiées) :
+-  Création d'un dataset drifté (3 variables modifiées) :
   - `DAYS_BIRTH` : +10 ans (vieillissement démographique)
   - `AMT_INCOME_TOTAL` : +20% (inflation)
   - `AMT_CREDIT` : +15% (hausse prix immobiliers)
-- ✅ Calcul de **5 métriques de drift** :
+-  Calcul de **5 métriques de drift** :
   - Kolmogorov-Smirnov (KS)
   - Wasserstein Distance
   - Population Stability Index (PSI)
   - Jensen-Shannon Divergence (JSD)
   - Chi-Square (variables catégorielles)
-- ✅ Analyse de sensibilité des métriques
-- ✅ Évaluation de la **dégradation de performance** 
+-  Analyse de sensibilité des métriques
+-  Évaluation de la **dégradation de performance** 
 
 ### Phase 6 : Mitigation du Drift (Q6)
 -  **Stratégie 1** : Suppression des variables fortement driftées
