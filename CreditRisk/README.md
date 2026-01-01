@@ -4,19 +4,6 @@ Projet de Machine Learning appliqué à la prédiction du risque de crédit avec
 
 ---
 
-##  Table des Matières
-
-- [Description du Projet](#description-du-projet)
-- [Objectifs](#objectifs)
-- [Dataset](#dataset)
-- [Méthodologie](#méthodologie)
-- [Résultats Clés](#résultats-clés)
-- [Structure du Projet](#structure-du-projet)
-- [Technologies Utilisées](#technologies-utilisées)
-- [Installation et Exécution](#installation-et-exécution)
-- [Auteur](#auteur)
-
----
 
 ##  Description du Projet
 
