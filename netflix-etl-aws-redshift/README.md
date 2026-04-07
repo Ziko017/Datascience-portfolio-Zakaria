@@ -1,138 +1,117 @@
-ETL Pipeline & Data Warehouse sur AWS – Netflix
-Contribution personnelle
+# ETL Pipeline & Data Warehouse sur AWS – Netflix (Contribution personnelle)
 
 Dans ce projet, je me suis occupé de la mise en place de l’architecture ETL et Data Warehouse sur AWS afin de structurer les données et faciliter leur exploitation par mes collègues dans Power BI.
 
 J’ai conçu un pipeline sécurisé permettant de centraliser les données, créer les schémas analytiques dans Amazon Redshift et synchroniser directement les datasets avec l’outil de visualisation via un accès réseau contrôlé dans un VPC.
 
-Architecture AWS
+---
 
-Flux de données :
+## Architecture AWS
 
-S3 → IAM Role → Redshift (Data Warehouse) → VPC Endpoint → Power BI
+### Flux de données
+
+S3 → IAM Role → Redshift (Data Warehouse) → VPC Endpoint → Power BI  
 
 Services complémentaires : CloudWatch, CloudTrail, Security Groups, SNS/SQS
 
-Stockage des données – Amazon S3
+---
 
-Les datasets sources sont stockés dans Amazon S3 dans une classe optimisée pour le coût et l’accès analytique :
+## Stockage des données – Amazon S3
 
-Storage class : Standard – Infrequent Access (Standard-IA)
-Upload optimisé via Multipart Upload
-Chiffrement des données avec SSE-S3
-Protection de l’intégrité des objets avec S3 Object Lock
+Les datasets sources sont stockés dans Amazon S3 avec une configuration optimisée :
 
-Les fichiers sont ensuite transmis au Data Warehouse via S3 Pre-signed URL afin de permettre un accès sécurisé temporaire pour le chargement dans Redshift.
+- storage class : Standard – Infrequent Access (Standard-IA)
+- upload via Multipart Upload
+- chiffrement SSE-S3
+- protection des objets avec S3 Object Lock
 
-Gestion des accès – IAM Policy
+Les fichiers sont transmis au Data Warehouse via S3 Pre-signed URL pour permettre un accès temporaire sécurisé lors du chargement dans Redshift.
 
-Un IAM Role a été configuré pour permettre au cluster Redshift d’accéder aux données stockées dans S3.
+---
 
-Configuration :
+## Gestion des accès – IAM Policy
 
-création d’une Managed Policy ReadOnly
-accès restreint aux ressources nécessaires
-autorisation d’accès aux objets S3 via URL sécurisée
-application du principe du moindre privilège
+Configuration d’un IAM Role permettant à Redshift d’accéder aux objets S3 :
 
-Ce mécanisme permet d’éviter l’exposition de credentials tout en garantissant une communication sécurisée entre services AWS.
+- Managed Policy ReadOnly
+- accès sécurisé aux fichiers via Pre-signed URL
+- principe du least privilege
 
-Data Warehouse – Amazon Redshift
+---
 
-Le Data Warehouse centralise les données transformées afin de faciliter l’analyse dans Power BI.
+## Data Warehouse – Amazon Redshift
 
-Mise en place :
+Création d’un environnement analytique optimisé :
 
-création des schémas analytiques
-structuration des tables pour requêtes BI
-optimisation pour charges OLAP
-organisation des données pour simplifier la création de visualisations
+- création des schémas analytiques
+- tables de faits et dimensions
+- optimisation OLAP
+- stockage columnar
+- architecture distribuée
 
-Redshift permet :
+---
 
-stockage columnar performant
-scalabilité horizontale
-intégration native avec l’écosystème AWS
-Réseau sécurisé – VPC
+## Réseau sécurisé – VPC
 
-Le cluster Redshift est déployé dans un Virtual Private Cloud (VPC) afin de sécuriser les flux de données.
+Déploiement du cluster dans un VPC :
 
-Configuration réseau :
+- Allow IPv4 public access activé
+- port 5439 configuré pour Redshift
+- endpoint sécurisé
+- isolation réseau
 
-VPC public avec Allow IPv4 public access activé
-ouverture du port 5439 pour la connexion Redshift
-configuration d’un endpoint partagé pour l’accès depuis Power BI
-isolation du Data Warehouse dans un environnement contrôlé
-Security Groups
+---
 
-Les Security Groups contrôlent l’accès au cluster :
+## Security Groups
 
-autorisation du trafic entrant sur le port 5439
-filtrage des IP autorisées
-sécurisation de la connexion Power BI → Redshift
-Monitoring et audit
+Configuration des règles réseau :
+
+- ouverture du port 5439
+- restriction des IP autorisées
+- contrôle du trafic
+
+---
+
+## Monitoring et audit
 
 CloudWatch :
-
-monitoring des performances
-logs système
-suivi des requêtes
+- monitoring des performances
+- logs
 
 CloudTrail :
+- audit des actions
+- traçabilité
 
-historique des accès
-audit des actions sur l’infrastructure
+---
 
-SNS / SQS :
+## Intégration Power BI
 
-gestion des notifications entre services
-Pipeline ETL
+Connexion directe au Data Warehouse :
 
-Extract
+- accès aux datasets structurés
+- création simplifiée de dashboards
+- requêtes optimisées
 
-récupération datasets depuis Kaggle
-stockage dans S3
+---
 
-Transform
+## Ma contribution
 
-nettoyage avec Python (Pandas)
-normalisation des colonnes
-jointure des datasets
-création de variables analytiques
+J’ai conçu et implémenté cette architecture AWS afin de :
 
-Load
+- structurer les données dans Redshift
+- sécuriser les flux via IAM et VPC
+- permettre une connexion directe avec Power BI
+- faciliter le travail de data visualisation pour mes collègues
 
-chargement dans Redshift
-création des schémas analytiques
-structuration des tables pour Power BI
-Impact pour l’équipe
+---
 
-Cette architecture permet :
+## Compétences démontrées
 
-accès direct aux données depuis Power BI
-meilleure performance des requêtes analytiques
-datasets structurés pour la visualisation
-environnement sécurisé et scalable
-simplification du travail des analystes
-Stack technique
-
-AWS
-
-S3
-IAM
-Redshift
-VPC
-CloudWatch
-CloudTrail
-SNS
-SQS
-
-Data
-
-Python
-Pandas
-SQL
-
-BI
-
+ETL Pipeline  
+AWS Cloud  
+Amazon S3  
+IAM Roles & Policies  
+Amazon Redshift  
+VPC  
+Data Warehouse  
 Power BI
