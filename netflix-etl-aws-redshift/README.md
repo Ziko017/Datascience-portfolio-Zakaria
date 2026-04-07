@@ -25,7 +25,7 @@ Les datasets sources sont stockés dans Amazon S3 avec une configuration optimis
 - chiffrement SSE-S3
 - protection des objets avec S3 Object Lock
 
-Les fichiers sont transmis au Data Warehouse via S3 Pre-signed URL pour permettre un accès temporaire sécurisé lors du chargement dans Redshift.
+Les fichiers sont transmis au Data Warehouse via S3 Pre-signed URL afin de permettre un accès temporaire sécurisé lors du chargement dans Redshift.
 
 ---
 
@@ -36,6 +36,7 @@ Configuration d’un IAM Role permettant à Redshift d’accéder aux objets S3 
 - Managed Policy ReadOnly
 - accès sécurisé aux fichiers via Pre-signed URL
 - principe du least privilege
+- authentification sécurisée entre services AWS
 
 ---
 
@@ -44,12 +45,42 @@ Configuration d’un IAM Role permettant à Redshift d’accéder aux objets S3 
 Création d’un environnement analytique optimisé :
 
 - création des schémas analytiques
-- tables de faits et dimensions
-- optimisation OLAP
+- structuration des tables de faits et dimensions
+- optimisation pour requêtes OLAP
 - stockage columnar
-- architecture distribuée
+- architecture distribuée (leader node + compute nodes)
+
+Objectif :
+faciliter l’analyse des données et améliorer la performance des visualisations Power BI.
 
 ---
+
+## Transformations ETL
+
+Les données nécessitaient peu de nettoyage car les datasets étaient déjà relativement structurés.
+
+Transformations principales réalisées :
+
+- nettoyage léger des colonnes (format texte, valeurs manquantes)
+- normalisation des titres de contenus
+- jointure des datasets sur le couple :
+  
+  show_title + director
+  
+- création d’une feature d’ingénierie basée sur la durée du contenu :
+
+  - short : durée ≤ 30 min
+  - standard : durée ≤ 60 min
+  - long : durée > 60 min
+
+Ces transformations ont permis d’uniformiser les sources de données et de faciliter l’analyse dans Power BI.
+
+---
+
+## Création des schémas analytiques (SQL)
+
+Des requêtes SQL utilisées dans Amazon Redshift pour structurer le Data Warehouse, schéma en flocon (voir le pdf de la présentation)
+
 
 ## Réseau sécurisé – VPC
 
