@@ -85,7 +85,7 @@ class QuestionRequest(BaseModel):
 
 # Config JWT + Sécurité
 # Header + Payload du JWT
-SECRET_KEY  = "ia_socratique_secret_key_2024"
+SECRET_KEY  = "" ->
 ALGORITHM   = "HS256"
 PROF_SECRET = "prof_secret_2024"
 
