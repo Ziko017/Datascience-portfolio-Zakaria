@@ -35,7 +35,6 @@ reranker = CrossEncoder(
     "H:/huggingface_cache/bge-reranker-v2-m3", 
     max_length=512
 )
-mistral_client = Mistral(api_key="3xnVQPuDcNPV8xuVxO3GVuJE045l55hP")
 
 # ===================
 # Stockage en mémoire
